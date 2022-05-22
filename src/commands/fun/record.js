@@ -36,13 +36,13 @@ module.exports = {
             await sleep(5000)
             connection.destroy();
             client.voiceManager.delete(message.channel.guild.id)
-            const filename = `./recordings/${message.author.id}`;
+            const filename = `./src/recordings/${message.author.id}`;
             const process = new ffmpeg(`${filename}.pcm`);
             process.then(function (audio) {
                 audio.fnExtractSoundToMP3(`${filename}.mp3`, async function (error, file) {
                     await msg.edit({
                         content: `🔉 Record của ${voiceChannel.name}!`,
-                        files: [new MessageAttachment(`./recordings/${message.author.id}.mp3`, 'recording.mp3')]
+                        files: [new MessageAttachment(`./src/recordings/${message.author.id}.mp3`, 'recording.mp3')]
                     });
                     fs.unlinkSync(`${filename}.pcm`)
                     fs.unlinkSync(`${filename}.mp3`)
@@ -72,7 +72,7 @@ function createListeningStream(receiver, userId, user) {
         },
     });
 
-    const filename = `./recordings/${user.id}.pcm`;
+    const filename = `./src/recordings/${user.id}.pcm`;
 
     const out = createWriteStream(filename, { flags: 'a' });
     console.log(`👂 Started recording ${filename}`);
