@@ -2,7 +2,7 @@ const { entersState, joinVoiceChannel, VoiceConnectionStatus, EndBehaviorType } 
 const { createWriteStream } = require('node:fs');
 const prism = require('prism-media');
 const { pipeline } = require('node:stream');
-const ffmpeg = require('ffmpeg');
+const ffmpeg = require('ffmpeg-static');
 const sleep = require('util').promisify(setTimeout);
 const { MessageAttachment } = require('discord.js');
 const fs = require('fs');
